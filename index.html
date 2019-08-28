@@ -30,12 +30,40 @@
     <script>
         // create variables for html content and for the values to store. Wins losses guesses and guesses so far computer guesses userguess computer choices
 
-        // create function to display results to the page or the dom
+        var wins = 0;
+        var losses = 0;
+        var guessLeft = 9;
+        var guessSoFar = [];
+        var userGuess;
+        var computerGuess;
+        var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+        var displayText = "Press any Key";
 
+        // create function to display results to the page or the dom
+        function updateDisplay() {
+            
+        
+        document.querySelector("#displayText").innerHTML = displayText;
+        document.querySelector("#wins").innerHTML = wins;
+        document.querySelector("#losses").innerHTML = losses;
+        document.querySelector("#guessLeft").innerHTML = guessleft;
+        document.querySelector("#guessSoFar").innerHTML = guessSoFar;
+        };
+
+        updateDisplay();
         // create a function yo generate a random letter for the computer guess
+        function computerRandomLetter() {
+            
+        
+         computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+        }
 
         // Need a function to reset the score back to zero and the guesses back to nine
-
+        function resetScores() {
+            guessLeft = 9;
+            guessSoFar = 0;
+            
+        }
         // Create onkeyup event function
 
 

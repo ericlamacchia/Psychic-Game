@@ -20,7 +20,7 @@
     <p>Losses: <span id="losses"></span></p>
     <p>Guesses left: <span id="guessLeft"></span></p>
     <p>Guesses So Far: <span id="guessSoFar"></span></p>
-    
+
 
 
 
@@ -41,30 +41,43 @@
 
         // create function to display results to the page or the dom
         function updateDisplay() {
-            
-        
-        document.querySelector("#displayText").innerHTML = displayText;
-        document.querySelector("#wins").innerHTML = wins;
-        document.querySelector("#losses").innerHTML = losses;
-        document.querySelector("#guessLeft").innerHTML = guessleft;
-        document.querySelector("#guessSoFar").innerHTML = guessSoFar;
+
+
+            document.querySelector("#displayText").innerHTML = displayText;
+            document.querySelector("#wins").innerHTML = wins;
+            document.querySelector("#losses").innerHTML = losses;
+            document.querySelector("#guessLeft").innerHTML = guessLeft;
+            document.querySelector("#guessSoFar").innerHTML = guessSoFar;
         };
 
         updateDisplay();
         // create a function yo generate a random letter for the computer guess
         function computerRandomLetter() {
-            
-        
-         computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+
+            computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
         }
 
         // Need a function to reset the score back to zero and the guesses back to nine
         function resetScores() {
             guessLeft = 9;
-            guessSoFar = 0;
-            
+            guessSoFar = [];
+
         }
+        computerRandomLetter()
+            console.log(computerGuess);
+            
+
         // Create onkeyup event function
+        document.onkeyup = function (event) {
+            var userGuess = event.key;
+            console.log(userGuess);
+
+
+            updateDisplay();
+
+
+        }
 
 
 

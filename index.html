@@ -34,50 +34,65 @@
         var losses = 0;
         var guessLeft = 9;
         var guessSoFar = [];
-        var userGuess;
-        var computerGuess;
+
         var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
         var displayText = "Press any Key";
 
-        // create function to display results to the page or the dom
-        function updateDisplay() {
+        var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
 
-            document.querySelector("#displayText").innerHTML = displayText;
-            document.querySelector("#wins").innerHTML = wins;
-            document.querySelector("#losses").innerHTML = losses;
-            document.querySelector("#guessLeft").innerHTML = guessLeft;
-            document.querySelector("#guessSoFar").innerHTML = guessSoFar;
-        };
+        function userLetters() {
+            document.getElementById("guessSoFar").textContent = guessSoFar;
 
-        updateDisplay();
-        // create a function yo generate a random letter for the computer guess
-        function computerRandomLetter() {
-
-
-            computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
         }
 
-        // Need a function to reset the score back to zero and the guesses back to nine
-        function resetScores() {
+        var restart = function () {
             guessLeft = 9;
             guessSoFar = [];
+            var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
 
         }
-        computerRandomLetter()
-            console.log(computerGuess);
-            
+
+
+
+
+
+
 
         // Create onkeyup event function
         document.onkeyup = function (event) {
             var userGuess = event.key;
-            console.log(userGuess);
+            guessSoFar.push(userGuess);
+            userLetters();
 
-
-            updateDisplay();
-
-
+            //if you guess what the computer guesses, adds a win, changes html display. restart guesses.
+            if (userGuess == computerGuess) {
+                wins++;
+                document.getElementById("wins").textContent = wins;
+                restart()
+            }
+            //if you don't, it takes away a guess. console log was for debugging. takes away a guess, displays it.
+            else if (userGuess != computerGuess) {
+                console.log(userLetters)
+                guessLeft--;
+                document.getElementById("guessLeft").textContent = guessLeft;
+            }
+            //if guesses hits zero, adds a loss, displays it, restarts guesses and computer guess.
+            if (guessLeft === 0) {
+                losses++;
+                document.getElementById("losses").textContent = losses;
+                restart()
+            }
         }
+
+
+            // updateDisplay();
+
+
+
+
+
 
 
 
